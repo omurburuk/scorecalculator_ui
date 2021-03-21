@@ -6,10 +6,10 @@ import NetworkingService from "../Networking/NetworkingService";
 class ReactMain extends React.Component {
 
   state={
-    nameSurname:"",
-    identity:"",
-    cityId:0,
-    incomeRange:0,
+    NameSurname:"",
+    IdentityNu:"",
+    CityId:0,
+    IncomeRangeId:0,
     formVisible:true,
     userScore:0,
     cities:[],
@@ -25,7 +25,7 @@ class ReactMain extends React.Component {
         cities:data,
       })
     });
-   NetworkingService.GetIncomeRanges().then((data)=>{
+    NetworkingService.GetIncomeRanges().then((data)=>{
       this.setState({
         incomeRanges:data
       })
@@ -52,54 +52,54 @@ class ReactMain extends React.Component {
         <div className="App">
           <header className="App-header">
             <div hidden={this.state.formVisible}>
-            <p>
-              Lütfen aşağıdaki bilgileri giriniz
-            </p>
-            <table>
-              <tr>
-                <td>TC Kimlik Numarası</td>
-                <td>
-                  <input type={"text"} maxLength={11} required={true} minLength={11} name={"identity"} onChange={(val)=>{
-                    this.handleChange(val);
-                  }}/>
-                </td>
-              </tr>
-              <tr>
-                <td>Ad Soyad</td>
-                <td>
-                  <input type={"text"} name={"nameSurname"} required={true} onChange={(val)=>{
-                    this.handleChange(val);
-                  }}/>
-                </td>
-              </tr>
-              <tr>
-                <td>Şehir</td>
-                <td>
-                  <select name={"cityId"} required={true}  onChange={(val)=>{
-                    this.handleChange(val);
-                  }}>
-                    {this.state.cities.map((value:any, index) => {
-                      return  <option value={value.Id}>{value.Name}</option>
-                    })}
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Gelir Aralığı</td>
-                <td>
-                  <select name={"incomeRange"} required={true} onChange={(val)=>{
-                  this.handleChange(val);
-                }}>
-                    {this.state.incomeRanges.map((value:any, index) => {
-                      return  <option value={value.Id}>{value.IncomeRange}</option>
-                    })}
-                </select>
-                </td>
-              </tr>
-            </table>
-            <div>
-              <input type={"button"} className={"saveBtn"} onClick={()=>{this.saveUser().then(r => {})}} value={"Kaydet"} />
-            </div>
+              <p>
+                Lütfen aşağıdaki bilgileri giriniz
+              </p>
+              <table>
+                <tr>
+                  <td>TC Kimlik Numarası</td>
+                  <td>
+                    <input type={"text"} maxLength={11} required={true} minLength={11} name={"IdentityNu"} onChange={(val)=>{
+                      this.handleChange(val);
+                    }}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ad Soyad</td>
+                  <td>
+                    <input type={"text"} name={"NameSurname"} required={true} onChange={(val)=>{
+                      this.handleChange(val);
+                    }}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Şehir</td>
+                  <td>
+                    <select name={"CityId"} required={true}  onChange={(val)=>{
+                      this.handleChange(val);
+                    }}>
+                      {this.state.cities.map((value:any, index) => {
+                        return  <option value={value.Id}>{value.Name}</option>
+                      })}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Gelir Aralığı</td>
+                  <td>
+                    <select name={"IncomeRangeId"} required={true} onChange={(val)=>{
+                      this.handleChange(val);
+                    }}>
+                      {this.state.incomeRanges.map((value:any, index) => {
+                        return  <option value={value.Id}>{value.IncomeRange}</option>
+                      })}
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <div>
+                <input type={"button"} className={"saveBtn"} onClick={()=>{this.saveUser().then(r => {})}} value={"Kaydet"} />
+              </div>
             </div>
             <div hidden={!this.state.formVisible}>
               <p>
